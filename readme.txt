@@ -1,10 +1,10 @@
 === BNS Add Styles ===
 Contributors: cais
 Donate link: http://buynowshop.com
-Tags: styles, custom styles, admin, editor, appearance
+Tags: styles, custom-styles, admin, editor, appearance, plugin-only
 Requires at least: 2.5
-Tested up to: 3.4.1
-Stable tag: 0.1
+Tested up to: 3.5-alpha
+Stable tag: 0.2
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Adds an enqueued custom stylesheet to the active theme
 
 == Description ==
 
-IF all you need to do is change a Theme's existing CSS this plugin will provide you an enqueued stylesheet that will not be over-written when a Theme is update; saving you the work of creating and maintaining a Child-Theme.
+If all you need to do is change a Theme's existing CSS this plugin will provide you an enqueued stylesheet that will not be over-written when a Theme is update; saving you the work of creating and maintaining a Child-Theme.
 
 == Installation ==
 * Under Plugins | Add New via Search or Upload.
@@ -23,10 +23,10 @@ IF all you need to do is change a Theme's existing CSS this plugin will provide 
 
 == Frequently Asked Questions ==
 = Can I specify the name of this custom stylesheet? =
-A: No, the stylesheet file name is: bns-add-custom-style.css
+No, the stylesheet file name is: bns-add-custom-style.css
 
 = How can I edit the "bns-add-custom-style.css" stylesheet? =
-A: You are able to edit the stylesheet with either your preferred IDE/method of editing theme template files; or, you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
+You are able to edit the stylesheet with either your preferred IDE/method of editing theme template files; or, you can simply use the editor found under Appearance | Editor and locate the "bns-add-custom-style.css" file.
 
 == Screenshots ==
 * There are no screenshots, yet.
@@ -58,5 +58,9 @@ A: You are able to edit the stylesheet with either your preferred IDE/method of 
 Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.2 =
+* Set stylesheet version to dynamically match plugin version
+* Minor 'readme.txt' updates
+
 = 0.1 =
 * Initial release
