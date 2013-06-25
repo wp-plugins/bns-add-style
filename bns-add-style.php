@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Style
 Plugin URI: http://buynowshop.com/plugins/bns-add-style/
 Description: Adds an enqueued custom stylesheet to the active theme
-Version: 0.5.4
+Version: 0.6
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-as
@@ -61,8 +61,9 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Correct style bleed through into Administration Panels
  *
  * @version 0.6
- * @date    February 27, 2013
- * Remove LESS support ...
+ * @date    June 25, 2013
+ * Remove LESS support, lets just keep this as a simple CSS adder
+ * Clean up documentation
  *
  * @todo Add access via the WordPress theme editor
  * @todo Review use of `admin_init` hook - is there a better hook/method? There must be as this is causing some grief!!
@@ -85,7 +86,7 @@ class BNS_Add_Style {
         $exit_message = __( 'BNS Add Style requires WordPress version 2.5 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>', 'bns-as' );
         if ( version_compare( $wp_version, "2.5", "<" ) ) {
             exit( $exit_message );
-        }
+        } /** End if - version compare */
 
         /** Make sure the stylesheet is added immediately. */
         add_action( 'admin_init', array( $this, 'add_stylesheet' ) );
@@ -96,7 +97,8 @@ class BNS_Add_Style {
          */
         add_action( 'wp_enqueue_scripts', array( $this, 'add_stylesheet' ), 15, 2 );
 
-    }
+    } /** End function - construct */
+
 
     /**
      * Add Custom Stylesheet
@@ -126,13 +128,13 @@ class BNS_Add_Style {
             $url = wp_nonce_url( get_stylesheet_directory_uri() . '/bns-add-custom-style.css' );
             if ( false === ( $credentials = request_filesystem_credentials( $url ) ) ) {
                 return true;
-            }
+            } /** End if - is readable */
             if ( ! WP_Filesystem( $credentials ) ) {
                 // our credentials were no good, ask the user for them again
                 request_filesystem_credentials( $url, '', true, false, '' );
                 return true;
-            }
-        }
+            } /** End if - no credentials */
+        } /** End if - not is readable */
 
         global $wp_filesystem;
         /** @var $css - introductory text of stylesheet */
@@ -159,7 +161,9 @@ class BNS_Add_Style {
 
         /** Now leave well enough alone after creating the CSS file */
         return null;
-    }
+
+    } /** End function - add custom stylesheet */
+
 
     /**
      * Add Stylesheet
@@ -188,8 +192,9 @@ class BNS_Add_Style {
         } else {
             $this->add_custom_stylesheet();
             wp_enqueue_style( 'BNS-Add-Custom-Style', get_stylesheet_directory_uri() . '/bns-add-custom-style.css', array(), $bns_as_data['Version'], 'screen' );
-        }
-    }
+        } /** End if - is readable */
+    } /** End function - add stylesheet */
+
 
     /**
      * Deregister Admin
@@ -204,7 +209,11 @@ class BNS_Add_Style {
      */
     function deregister_admin() {
         wp_deregister_style( 'BNS-Add-Custom-Style' );
-    }
+    } /** End function - deregister admin */
 
-}
+
+} /** End class - BNS Add Style */
+
+
+/** @var $bns_add_style - initialize new class instance */
 $bns_add_style = new BNS_Add_Style();
